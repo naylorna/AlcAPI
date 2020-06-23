@@ -1,0 +1,24 @@
+{
+  "name": "alcapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naylorna/AlcAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naylorna/AlcAPI/issues"
+  },
+  "homepage": "https://github.com/naylorna/AlcAPI#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.2"
+  }
+}
