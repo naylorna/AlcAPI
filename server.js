@@ -1,35 +1,29 @@
 const express = require('express');
 const request = require("request");
+const bodyParser = require("body-parser")
 const app = express();
-var obj;
+var drinkTypes = require('./index.js');
+var drinkIngredients = require('./indexi.js');
 
 //const configz = JSON.parse(fs.readFileSync('./config.json', 'utf-8'))
 const PORT = 9000;
 
-var options = {
-  method: 'GET',
-  url: 'https://the-cocktail-db.p.rapidapi.com/list.php',
-  qs: {a: 'list'},
-  headers: {
-    'x-rapidapi-host': 'the-cocktail-db.p.rapidapi.com',
-    'x-rapidapi-key': '4e646a0679msh6adc5431da3ebd5p1321dejsna473e2d5f6ed',
-    useQueryString: true
-  }
-};
+app.post('/api/sendalc/:drinks', (request, response) => {
 
-request(options, function (error, response, body) {
-	if (error) throw new Error(error);
-    obj =body;
-	console.log(body);
-});
-
-app.post('/api/alc/drinks', (request, response) => {
-
-     console.log(response)
+     console.log(request)
+     if (request.params.drinks) {
+         console.log('request recieved, printing out drink types')
+         console.log(request.params.drinks)
+        response.status(200).send({message: 'request recieved'});
+    }
+    else
+        res.status(500).send({message: 'error: was expecting a message body'})
  })
 
+ // Shows drink ingredients JSON output
 app.get('/api/test', (request, response) => {
-    response.status(200).send(obj)
+    response.status(200).send(drinkIngredients)
+    
 })
 
 app.listen(PORT, () => console.log(`server is up at port ${PORT}`))
