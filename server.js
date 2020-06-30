@@ -1,12 +1,23 @@
 const express = require('express');
 const request = require("request");
-const bodyParser = require("body-parser")
+const bp = require("body-parser")
 const app = express();
 var drinkTypes = require('./index.js');
 var drinkIngredients = require('./indexi.js');
 
+app.use(bp())
 //const configz = JSON.parse(fs.readFileSync('./config.json', 'utf-8'))
 const PORT = 9000;
+
+// var as = JSON.parse(drinkIngredients);
+
+// convert data to array
+// var result = [];
+// for (i in drinkIngredients) {
+//     result = drinkIngredients[i]
+// }
+
+let wholeArray = Object.keys(drinkIngredients).map(key => drinkIngredients[key]);
 
 app.post('/api/sendalc/:drinks', (request, response) => {
 
@@ -22,7 +33,7 @@ app.post('/api/sendalc/:drinks', (request, response) => {
 
  // Shows drink ingredients JSON output
 app.get('/api/test', (request, response) => {
-    response.status(200).send(drinkIngredients)
+    response.status(200).send(wholeArray)
     
 })
 

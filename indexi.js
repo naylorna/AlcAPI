@@ -13,6 +13,6 @@ var options = {
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-  
-	exports.drinkIngredients = body;
+  // console.log(JSON.parse(body));
+	exports.drinkIngredients = JSON.parse(body);
 });
