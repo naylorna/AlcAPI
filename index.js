@@ -1,18 +1,39 @@
-var request = require("request");
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-var options = {
-  method: 'GET',
-  url: 'https://the-cocktail-db.p.rapidapi.com/list.php',
-  qs: {a: 'list'},
-  headers: {
-    'x-rapidapi-host': 'the-cocktail-db.p.rapidapi.com',
-    'x-rapidapi-key': '4e646a0679msh6adc5431da3ebd5p1321dejsna473e2d5f6ed',
-    useQueryString: true
+//import data from api
+var drinkIngredients = require('./indexi.js');
+
+class Random extends React.Component {
+    render() {
+      return (
+        <button className="random">
+          {this.props.value}
+        </button>
+      );
+    }
   }
-};
-
-request(options, function (error, response, body) {
-	if (error) throw new Error(error);
-  // console.log(body);
-	exports.drinkTypes = body;
-});
+  
+  class Game extends React.Component {
+    render() {
+      return (
+        <div className="game">
+          <div className="game-board">
+            <Board />
+          </div>
+          <div className="game-info">
+            <div>{/* status */}</div>
+            <ol>{/* TODO */}</ol>
+          </div>
+        </div>
+      );
+    }
+  }
+  
+  // ========================================
+  
+  ReactDOM.render(
+    <Game />,
+    document.getElementById('root')
+  );
+  

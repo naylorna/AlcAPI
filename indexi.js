@@ -14,5 +14,6 @@ var options = {
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
   // console.log(JSON.parse(body));
-	exports.drinkIngredients = JSON.parse(body);
+  let obj = JSON.parse(body)
+	exports.drinkIngredients = obj.drinks;
 });
