@@ -3,23 +3,18 @@ const fetch = require('node-fetch');
 const request = require("request");
 const bp = require("body-parser")
 const app = express();
-//var drinkTypes = require('./index.js');
+var cors = require('cors');
+
 var drinkIngredients = require('./indexi.js');
+
+app.use(cors({
+	origin: "http://localhost:3000",
+	methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
+}));
 
 app.use(bp())
 //const configz = JSON.parse(fs.readFileSync('./config.json', 'utf-8'))
 const PORT = 9000;
-
-
-// convert data to array
-// var result = [];
-// for (let i =0; i < 20; i++) {
-//     result.push(drinkIngredients.drinks[i]);
-// }
-
-//var j = Object.values(drinkIngredients.drinks)
-
-// let wholeArray = Object.keys(drinkIngredients).map(key => drinkIngredients[key]);
 
 app.post('/api/sendalc/:drinks', (request, response) => {
 
@@ -34,7 +29,7 @@ app.post('/api/sendalc/:drinks', (request, response) => {
  })
 
  // Shows drink ingredients JSON output
-app.get('/api/test', (request, response) => {
+app.get('/api/drinks', (request, response) => {
     response.status(200).send(drinkIngredients)
 })
 
